@@ -88,6 +88,10 @@ const Wrap = styled.div`
     img {
       width: 100%;
       height: 100%;
+      @media (max-width: 768px) {
+        height: 40vh;
+        object-fit: cover;
+      }
     }
     &:hover {
       padding: 0;
