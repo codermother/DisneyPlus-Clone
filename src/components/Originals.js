@@ -1,43 +1,24 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { selectOriginal } from "../features/movie/movieSlice";
 
 const Originals = (props) => {
+  const movies = useSelector(selectOriginal);
+
   return (
     <Container>
       <h4>Originals</h4>
       <Content>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://cdntr1.img.sputniknews.com/img/103140/66/1031406660_0:261:5155:3175_600x0_80_0_0_f56e2ba783acb93d16f35661daced106.jpg.webp"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://cdntr1.img.sputniknews.com/img/103140/66/1031406660_0:261:5155:3175_600x0_80_0_0_f56e2ba783acb93d16f35661daced106.jpg.webp"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://cdntr1.img.sputniknews.com/img/103140/66/1031406660_0:261:5155:3175_600x0_80_0_0_f56e2ba783acb93d16f35661daced106.jpg.webp"
-              alt=""
-            />
-          </Link>
-        </Wrap>
-        <Wrap>
-          <Link to="/">
-            <img
-              src="https://cdntr1.img.sputniknews.com/img/103140/66/1031406660_0:261:5155:3175_600x0_80_0_0_f56e2ba783acb93d16f35661daced106.jpg.webp"
-              alt=""
-            />
-          </Link>
-        </Wrap>
+        {movies &&
+          movies.map((movie, key) => (
+            <Wrap key={key}>
+              {movie.id}
+              <Link to={"/detail/" + movie.id}>
+                <img src={movie.cardImg} alt={movie.title} />
+              </Link>
+            </Wrap>
+          ))}
       </Content>
     </Container>
   );
